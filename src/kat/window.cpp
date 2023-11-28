@@ -35,7 +35,7 @@ namespace kat {
     }
 
     window_frame_size window::get_frame_size() const {
-        window_frame_size v;
+        window_frame_size v{};
         glfwGetWindowFrameSize(m_handle, &v.left, &v.top, &v.right, &v.bottom);
         return v;
     }
