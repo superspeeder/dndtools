@@ -18,6 +18,8 @@ add_executable(dndtools src/main.cpp
         src/kat/math.hpp
         src/kat/engine.cpp
         src/kat/engine.hpp
+        src/kat/presenter.cpp
+        src/kat/presenter.hpp
 )
 target_include_directories(dndtools PRIVATE src/ ${Stb_INCLUDE_DIR})
 target_link_libraries(dndtools glm::glm glfw spdlog::spdlog Vulkan::Vulkan eventpp::eventpp)

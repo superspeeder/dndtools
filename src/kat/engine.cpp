@@ -20,6 +20,12 @@ namespace kat {
     }
 
     engine::~engine() {
+        safe_destroy(m_device);
+        safe_destroy(m_instance);
+    }
+
+    std::shared_ptr<engine> engine::create() {
+        return std::shared_ptr<engine>(new engine());
     }
 
     void engine::create_instance() {
@@ -68,6 +74,10 @@ namespace kat {
         if (!m_queue_families.is_complete()) {
             throw std::runtime_error("Failed to find queue families");
         }
+
+        spdlog::debug("Selected queue families: (graphics: {}, present: {}, transfer: {}, compute: {}).",
+                      *m_queue_families.graphics, *m_queue_families.present, *m_queue_families.transfer,
+                      *m_queue_families.compute);
     }
 
     void engine::create_device() {
@@ -104,5 +114,7 @@ namespace kat {
         m_queues.present  = m_device.getQueue(*m_queue_families.present, 0);
         m_queues.transfer = m_device.getQueue(*m_queue_families.transfer, 0);
         m_queues.compute  = m_device.getQueue(*m_queue_families.compute, 0);
+
+        spdlog::info("Connected to graphics device");
     }
 } // kat

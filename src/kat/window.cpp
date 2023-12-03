@@ -25,13 +25,13 @@ namespace kat {
     glm::uvec2 window::get_framebuffer_size() const {
         int x, y;
         glfwGetFramebufferSize(m_handle, &x, &y);
-        return {x, y};
+        return { x, y };
     }
 
     glm::uvec2 window::get_size() const {
         int x, y;
         glfwGetWindowSize(m_handle, &x, &y);
-        return {x, y};
+        return { x, y };
     }
 
     window_frame_size window::get_frame_size() const {
@@ -345,13 +345,10 @@ namespace kat {
         return surface;
     }
 
-    std::shared_ptr<window> window::create_shared(const window_settings &settings) {
+    std::shared_ptr<window> window::create(const window_settings &settings) {
         return std::shared_ptr<window>(new window(settings));
     }
 
-    std::unique_ptr<window> window::create(const window_settings &settings) {
-        return std::unique_ptr<window>(new window(settings));
-    }
 
     window::window(const window_settings &settings) {
         glfwDefaultWindowHints();
@@ -417,7 +414,7 @@ namespace kat {
         uint32_t     count;
         const char **ppnames = glfwGetRequiredInstanceExtensions(&count);
 
-        return {ppnames, ppnames + count};
+        return { ppnames, ppnames + count };
     }
 
     bool get_physical_device_presentation_support(vk::Instance instance, vk::PhysicalDevice physical_device,

@@ -16,21 +16,17 @@ int main() {
     spdlog::set_default_logger(logger);
 
     spdlog::info("Hello!");
-
-    glfwInit();
-
-    std::shared_ptr<kat::engine> engine = std::make_shared<kat::engine>();
-
     {
-        const auto window = kat::window::create(kat::window_settings{ .title = "D&D Tools" });
+        std::shared_ptr<kat::engine> engine = kat::engine::create();
 
-        while (window->is_open()) {
-            kat::poll_events();
+        {
+            const auto window = kat::window::create(kat::window_settings{ .title = "D&D Tools" });
+
+            while (window->is_open()) {
+                kat::poll_events();
+            }
         }
     }
-
-    glfwTerminate();
-
     spdlog::shutdown();
 
     return 0;

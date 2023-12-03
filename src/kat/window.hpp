@@ -397,8 +397,7 @@ namespace kat {
 
         vk::SurfaceKHR create_window_surface(vk::Instance instance);
 
-        static std::shared_ptr<window> create_shared(const window_settings &settings = {});
-        static std::unique_ptr<window> create(const window_settings &settings = {});
+        static std::shared_ptr<window> create(const window_settings &settings = {});
 
     private:
         explicit window(const window_settings &settings = {});
